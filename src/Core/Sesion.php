@@ -1,9 +1,9 @@
 <?php
-// ============================================================
+
 // BREVE DESCRIPCIÓN:
 // Manejo de sesiones. Proporciona métodos para guardar,
 // obtener y eliminar datos de sesión de forma segura.
-// ============================================================
+
 
 namespace Core;
 

@@ -1,7 +1,7 @@
--- ============================================================
+
 -- Mesa de Ayuda — Esquema de Base de Datos
--- Versión corregida: InnoDB + Llaves foráneas + datos limpios
--- ============================================================
+-- Versión corregida
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -11,9 +11,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 CREATE DATABASE IF NOT EXISTS `mesa_ayuda` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `mesa_ayuda`;
 
--- --------------------------------------------------------
--- usuarios (administran el sistema: admin, agente, supervisor)
--- --------------------------------------------------------
+
+-- usuarios (administran el sistema: admin, agente)
+
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,

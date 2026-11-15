@@ -1,4 +1,7 @@
 <?php
+// BREVE DESCRIPCIÓN:
+// Modelo para la gestión de respuestas de tickets.
+// Almacena el historial de interacciones entre agentes y colaboradores.
 
 namespace Models;
 

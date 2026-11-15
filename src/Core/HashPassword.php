@@ -5,12 +5,10 @@ namespace Core;
 use Interfaces\CriptografiaInterface;
 
 /**
- * ============================================================
+
  * HASH DE CONTRASEÑAS
- * ============================================================
  * Implementación concreta del contrato CriptografiaInterface
  * para contraseñas de usuarios y colaboradores.
- * ============================================================
  */
 class HashPassword implements CriptografiaInterface
 {

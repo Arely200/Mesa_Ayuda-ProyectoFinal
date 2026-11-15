@@ -92,13 +92,17 @@ class AgenteController extends Controlador
 
         $firmaValida = (new FirmaDigital())->verificarFirmaTicket($ticket, $ticket['firma_digital']);
         $respuestas = $this->respuestaModel->obtenerPorTicket($id);
+        
+        $encuestaModel = new \Models\EncuestaSatisfaccion();
+        $encuesta = $encuestaModel->obtenerPorTicket($id);
 
         $this->vista('agente/ver_ticket', [
             'titulo' => 'Ticket #' . $id,
             'ticket' => $ticket,
             'respuestas' => $respuestas,
             'firma_valida' => $firmaValida,
-            'csrf_token' => CSRF::generarToken()
+            'csrf_token' => CSRF::generarToken(),
+            'encuesta' => $encuesta
         ]);
     }
 

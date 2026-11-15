@@ -1,10 +1,9 @@
 <?php
-// ============================================================
+
 // BREVE DESCRIPCIÓN:
 // Clase de sanitización de datos (OBLIGATORIA).
 // Limpia entradas de usuario para prevenir XSS e inyecciones.
 // Se usa en todos los controladores antes de procesar datos.
-// ============================================================
 
 namespace Helpers;
 
@@ -14,7 +13,6 @@ class Sanitizador
     {
         // IMPORTANTE: aquí NO se aplica htmlspecialchars().
         // Esta función limpia la entrada (espacios, caracteres de control),
-        // pero el escape a HTML se hace en la VISTA al momento de mostrar
         // los datos (con htmlspecialchars), nunca antes de guardar en la BD.
         // Guardar el dato ya escapado corrompe la información (ej: un título
         // con comillas quedaba guardado como "&quot;" en vez de la comilla real)

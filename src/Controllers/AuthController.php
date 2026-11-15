@@ -76,12 +76,12 @@ class AuthController extends Controlador
             return;
         }
 
-        // ============================================================
+
         // Un único formulario de login para todo el sistema.
         // Primero se busca el correo entre el personal (usuarios:
         // admin/agente/supervisor). Si no existe ahí, se intenta como
         // colaborador (clientes que crean tickets).
-        // ============================================================
+
         if ($this->usuarioModel->obtenerPorEmail($email)) {
             $this->autenticarPersonal($email, $password);
             return;

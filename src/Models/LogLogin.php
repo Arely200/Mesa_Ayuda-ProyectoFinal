@@ -1,4 +1,7 @@
 <?php
+// BREVE DESCRIPCIÓN:
+// Modelo para la gestión de registros de intentos de login.
+// Almacena auditoría de accesos, intentos fallidos y bloqueos de cuentas.
 
 namespace Models;
 

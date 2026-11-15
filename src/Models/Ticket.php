@@ -1,4 +1,8 @@
 <?php
+// BREVE DESCRIPCIÓN:
+// Modelo principal para la gestión de tickets del sistema.
+// Maneja la creación, asignación, seguimiento y culminación de tickets.
+// Incluye métodos para obtener tickets por colaborador, agente y estado.
 
 namespace Models;
 
@@ -128,6 +132,9 @@ class Ticket extends Modelo
 
     public function crearTicket($datos)
     {
+        if (mb_strlen($datos['titulo'] ?? '') > 200) {
+            throw new \Exception('El título es muy largo, debe ser corto (máximo 200 caracteres).');
+        }
         return $this->crear($datos);
     }
 

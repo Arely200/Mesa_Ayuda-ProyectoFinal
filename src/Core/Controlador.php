@@ -1,11 +1,11 @@
 <?php
-// ============================================================
+
 // BREVE DESCRIPCIÓN:
 // Controlador base del sistema (Controller).
 // Todos los controladores heredan de esta clase.
 // Proporciona métodos útiles para cargar vistas (view) y
 // hacer redirecciones (redirect). Centraliza funcionalidad común.
-// ============================================================
+
 
 namespace Core;
 

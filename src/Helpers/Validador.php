@@ -1,18 +1,18 @@
 <?php
-// ============================================================
+
 // BREVE DESCRIPCIÓN:
 // Clase de validación de datos (OBLIGATORIA).
 // Valida emails, contraseñas (RNF-05: 8-12 caracteres),
 // campos requeridos, formatos de fecha, etc.
-// ============================================================
+
 
 namespace Helpers;
 
 class Validador
 {
-    // ============================================================
+    
     // VALIDACIÓN DE CONTRASEÑA (RNF-05: 8-12 caracteres)
-    // ============================================================
+
     public static function validatePassword($password, $campo = 'password')
     {
         $length = strlen($password);
@@ -27,9 +27,9 @@ class Validador
         return self::validatePassword($password);
     }
 
-    // ============================================================
+    
     // VALIDACIÓN DE EMAIL
-    // ============================================================
+  
     public static function validateEmail($email, $campo = 'email')
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -43,9 +43,9 @@ class Validador
         return self::validateEmail($email);
     }
 
-    // ============================================================
+
     // VALIDACIÓN DE CAMPOS REQUERIDOS (VERSIÓN CON ARRAY DE CAMPOS)
-    // ============================================================
+   
     public static function validateRequired($data, $fields)
     {
         foreach ($fields as $field) {
@@ -61,9 +61,9 @@ class Validador
         return self::validateRequired($data, $fields);
     }
 
-    // ============================================================
+    
     // VALIDACIÓN DE CAMPOS REQUERIDOS (VERSIÓN CON ARRAY ASOCIATIVO)
-    // ============================================================
+
     public static function validarRequerido($datos)
     {
         foreach ($datos as $campo => $valor) {
@@ -74,9 +74,9 @@ class Validador
         return true;
     }
 
-    // ============================================================
+    
     // VALIDACIÓN DE IDENTIFICACIÓN
-    // ============================================================
+  
    public static function validateIdentificacion($identificacion, $campo = 'identificacion')
 {
    
@@ -92,9 +92,9 @@ class Validador
         return self::validateIdentificacion($identificacion);
     }
 
-    // ============================================================
+    
     // VALIDACIÓN DE FECHA
-    // ============================================================
+   
     public static function validateDate($date, $format = 'Y-m-d')
     {
         $d = \DateTime::createFromFormat($format, $date);

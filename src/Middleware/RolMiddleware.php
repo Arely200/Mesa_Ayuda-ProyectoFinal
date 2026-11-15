@@ -1,10 +1,9 @@
 <?php
-// ============================================================
 // BREVE DESCRIPCIÓN:
 // Middleware de roles y permisos.
 // Verifica que el usuario tenga el rol requerido o el permiso
 // específico para acceder a un módulo/acción.
-// ============================================================
+
 
 namespace Middleware;
 

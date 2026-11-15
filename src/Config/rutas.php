@@ -6,27 +6,27 @@ if (!isset($enrutador) || !$enrutador instanceof Enrutador) {
     $enrutador = new Enrutador();
 }
 
-// ============================================================
+
 // RUTAS DE AUTENTICACIÓN
-// ============================================================
+
 $enrutador->agregar('GET',  '/login',  'AuthController', 'showLogin');
 $enrutador->agregar('POST', '/login',  'AuthController', 'authenticate');
 $enrutador->agregar('GET',  '/logout', 'AuthController', 'logout');
 $enrutador->agregar('POST', '/logout', 'AuthController', 'logout');
 
-// ============================================================
+
 // RUTAS DEL DASHBOARD
-// ============================================================
+
 $enrutador->agregar('GET', '/admin/dashboard', 'DashboardController', 'index');
 
-// ============================================================
+
 // RUTAS DEL PANEL SUPERVISOR
-// ============================================================
+
 $enrutador->agregar('GET', '/supervisor/dashboard', 'SupervisorController', 'dashboard');
 
-// ============================================================
+
 // RUTAS DE USUARIOS
-// ============================================================
+
 $enrutador->agregar('GET',  '/admin/usuarios',              'UserController', 'index');
 $enrutador->agregar('GET',  '/admin/usuarios/crear',        'UserController', 'crear');
 $enrutador->agregar('POST', '/admin/usuarios/guardar',      'UserController', 'guardar');
@@ -34,9 +34,9 @@ $enrutador->agregar('GET',  '/admin/usuarios/editar/{id}',  'UserController', 'e
 $enrutador->agregar('POST', '/admin/usuarios/actualizar/{id}', 'UserController', 'actualizar');
 $enrutador->agregar('POST', '/admin/usuarios/eliminar/{id}',   'UserController', 'eliminar');
 
-// ============================================================
+
 // RUTAS DE COLABORADORES
-// ============================================================
+
 $enrutador->agregar('GET',  '/admin/colaboradores',                 'ColaboradorController', 'index');
 $enrutador->agregar('GET',  '/admin/colaboradores/crear',           'ColaboradorController', 'crear');
 $enrutador->agregar('POST', '/admin/colaboradores/guardar',         'ColaboradorController', 'guardar');
@@ -44,9 +44,9 @@ $enrutador->agregar('GET',  '/admin/colaboradores/editar/{id}',     'Colaborador
 $enrutador->agregar('POST', '/admin/colaboradores/actualizar/{id}', 'ColaboradorController', 'actualizar');
 $enrutador->agregar('POST', '/admin/colaboradores/eliminar/{id}',   'ColaboradorController', 'eliminar');
 
-// ============================================================
+
 // RUTAS DE TICKETS
-// ============================================================
+
 $enrutador->agregar('GET',  '/admin/tickets',                  'TicketController', 'index');
 $enrutador->agregar('GET',  '/admin/tickets/crear',            'TicketController', 'crear');
 $enrutador->agregar('POST', '/admin/tickets/guardar',          'TicketController', 'guardar');
@@ -57,9 +57,9 @@ $enrutador->agregar('POST', '/admin/tickets/culminar/{id}',    'TicketController
 $enrutador->agregar('POST', '/admin/tickets/eliminar/{id}',    'TicketController', 'eliminar');
 $enrutador->agregar('POST', '/admin/tickets/en-espera/{id}',   'TicketController', 'ponerEnEspera');
 
-// ============================================================
+
 // RUTAS DE REPORTES
-// ============================================================
+
 $enrutador->agregar('GET', '/admin/reportes',                    'ReporteController', 'index');
 $enrutador->agregar('GET', '/admin/reportes/culminados',         'ReporteController', 'culminados');
 $enrutador->agregar('GET', '/admin/reportes/categorias',         'ReporteController', 'estadisticasCategoria');
@@ -67,9 +67,9 @@ $enrutador->agregar('GET', '/admin/reportes/categorias/excel',   'ReporteControl
 $enrutador->agregar('GET', '/admin/reportes/estadisticas','ReporteController', 'estadisticas');
 $enrutador->agregar('GET', '/admin/reportes/excel',       'ReporteController', 'exportarExcel');
 
-// ============================================================
+
 // RUTAS DE CATEGORÍAS
-// ============================================================
+
 $enrutador->agregar('GET',  '/admin/categorias',                 'CategoriaController', 'index');
 $enrutador->agregar('GET',  '/admin/categorias/crear',           'CategoriaController', 'crear');
 $enrutador->agregar('POST', '/admin/categorias/guardar',         'CategoriaController', 'guardar');
@@ -77,34 +77,34 @@ $enrutador->agregar('GET',  '/admin/categorias/editar/{id}',     'CategoriaContr
 $enrutador->agregar('POST', '/admin/categorias/actualizar/{id}', 'CategoriaController', 'actualizar');
 $enrutador->agregar('POST', '/admin/categorias/eliminar/{id}',   'CategoriaController', 'eliminar');
 
-// ============================================================
+
 // RUTAS DE LOGS
-// ============================================================
+
 $enrutador->agregar('GET', '/admin/logs', 'LogController', 'index');
 
-// ============================================================
+
 // RUTAS DE ROLES Y PERMISOS
-// ============================================================
+
 $enrutador->agregar('GET',  '/admin/roles',            'RolController', 'index');
 $enrutador->agregar('POST', '/admin/roles/actualizar', 'RolController', 'actualizar');
 
-// ============================================================
+
 // PÁGINA DE INICIO (MARKETING)
-// ============================================================
+
 $enrutador->agregar('GET', '/', 'PublicController', 'home');
 
-// ============================================================
+
 // RUTAS DE MARKETING
-// ============================================================
+
 $enrutador->agregar('GET', '/noticias', 'PublicController', 'noticias');
 $enrutador->agregar('GET', '/contacto', 'PublicController', 'contacto');
 $enrutador->agregar('GET', '/about',    'PublicController', 'about');
 
-// ============================================================
+
 // RUTAS DEL PORTAL PÚBLICO (COLABORADORES)
-// ============================================================
+
 // Se mantienen estas rutas por compatibilidad con enlaces antiguos,
-// pero ahora apuntan al mismo (único) controlador de login del sistema.
+
 $enrutador->agregar('GET',  '/public/login',            'AuthController', 'showLogin');
 $enrutador->agregar('POST', '/public/login',            'AuthController', 'authenticate');
 $enrutador->agregar('POST', '/public/logout',           'AuthController', 'logout');
@@ -120,9 +120,9 @@ $enrutador->agregar('POST', '/public/cambiar-password', 'PublicController', 'upd
 $enrutador->agregar('GET',  '/public/encuesta/{id}',    'PublicController', 'mostrarEncuesta');
 $enrutador->agregar('POST', '/public/guardar-encuesta', 'PublicController', 'guardarEncuesta');
 
-// ============================================================
+
 // RUTAS DEL PANEL AGENTE
-// ============================================================
+
 $enrutador->agregar('GET',  '/agente/dashboard',          'AgenteController', 'dashboard');
 $enrutador->agregar('GET',  '/agente/tickets',            'AgenteController', 'misTickets');
 $enrutador->agregar('GET',  '/agente/ticket/{id}',        'AgenteController', 'verTicket');

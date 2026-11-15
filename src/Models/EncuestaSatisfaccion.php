@@ -1,5 +1,7 @@
 <?php
-
+// BREVE DESCRIPCIÓN:
+// Modelo para la gestión de encuestas de satisfacción.
+// Registra la calificación y comentarios de los colaboradores al culminar un ticket
 namespace Models;
 
 use Core\Modelo;

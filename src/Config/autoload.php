@@ -1,11 +1,10 @@
 <?php
-// ============================================================
+
 // BREVE DESCRIPCIÓN:
 // Autocargador de clases (spl_autoload_register).
 // Permite usar las clases sin necesidad de incluirlas manualmente.
 // Busca automáticamente los archivos en las carpetas Core,
 // Controllers, Models, Helpers, Interfaces, Middleware, Config y Exceptions.
-// ============================================================
 
 spl_autoload_register(function ($className) {
     $baseDir = __DIR__ . '/../';
@@ -31,7 +30,7 @@ spl_autoload_register(function ($className) {
     }
     
     $map = [
-        'Config\\' => 'Config/',        // ✅ AGREGAR ESTA LÍNEA
+        'Config\\' => 'Config/',      
         'Core\\' => 'Core/',
         'Controllers\\' => 'Controllers/',
         'Models\\' => 'Models/',

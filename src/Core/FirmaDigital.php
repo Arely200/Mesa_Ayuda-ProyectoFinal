@@ -5,9 +5,7 @@ namespace Core;
 use Interfaces\CriptografiaInterface;
 
 /**
- * ============================================================
  * FIRMA DIGITAL DE REGISTROS
- * ============================================================
  * Implementación concreta del contrato CriptografiaInterface
  * para la firma de integridad de los tickets (HMAC-SHA256).
  *
@@ -15,7 +13,6 @@ use Interfaces\CriptografiaInterface;
  * son intercambiables como "transformadores de datos", aunque
  * resuelvan problemas distintos (contraseñas vs. integridad de
  * registros).
- * ============================================================
  */
 class FirmaDigital implements CriptografiaInterface
 {
@@ -28,9 +25,6 @@ class FirmaDigital implements CriptografiaInterface
 
     public function verificar(string $dato, ?string $transformado): bool
     {
-        // Se conserva la misma protección que ya tenías: si no hay
-        // firma (null/"": ticket creado antes de tener firma, etc.)
-        // se considera inválida sin intentar comparar.
         if (!is_string($transformado) || $transformado === '') {
             return false;
         }

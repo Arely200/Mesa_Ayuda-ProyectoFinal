@@ -1,5 +1,7 @@
 <?php
-
+// BREVE DESCRIPCIÓN:
+// Modelo para la gestión de categorías de tickets.
+// Clasifica los tickets en Soporte y Académico con sus subcategorías.
 namespace Models;
 
 use Core\Modelo;

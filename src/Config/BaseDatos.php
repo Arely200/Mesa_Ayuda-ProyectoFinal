@@ -1,11 +1,11 @@
 <?php
-// ============================================================
+//
 // BREVE DESCRIPCIÓN:
 // Clase de conexión a la base de datos (Patrón Singleton).
 // Garantiza una única conexión PDO en toda la aplicación.
 // También incluye métodos helpers para ejecutar consultas
 // con prepared statements (seguridad contra SQL Injection).
-// ============================================================
+
 
 namespace Config;
 
@@ -29,6 +29,7 @@ class BaseDatos
             
             $this->pdo = new PDO($dsn, $user, $pass);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            //OWASP: Prevención de SQL Injection
             $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             

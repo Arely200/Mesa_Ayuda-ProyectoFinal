@@ -116,28 +116,45 @@ class PublicController extends Controlador
     }
 
     public function verTicket($id)
-    {
-        $this->verificarSesion();
-
-        $ticket = $this->ticketModel->obtenerPorId($id);
-
-        if (!$ticket) {
-            $_SESSION['error'] = 'Ticket no encontrado';
-            $this->redirigir('/public/mis-tickets');
-            return;
-        }
-
-        if ($ticket['colaborador_id'] != $_SESSION['colaborador_id']) {
-            $_SESSION['error'] = 'No tienes permiso para ver este ticket';
-            $this->redirigir('/public/mis-tickets');
-            return;
-        }
-
-        $this->vista('public/ver_ticket', [
-            'titulo' => 'Ticket #' . $id,
-            'ticket' => $ticket
-        ]);
+{
+    if (!isset($_SESSION['colaborador_id'])) {
+        $_SESSION['error'] = 'Debes iniciar sesión';
+        $this->redirigir('/login');
+        return;
     }
+
+    $ticket = $this->ticketModel->obtenerPorId($id);
+    
+    if (!$ticket) {
+        $_SESSION['error'] = 'Ticket no encontrado';
+        $this->redirigir('/public/mis-tickets');
+        return;
+    }
+
+    if ($ticket['colaborador_id'] != $_SESSION['colaborador_id']) {
+        $_SESSION['error'] = 'No tienes permiso para ver este ticket';
+        $this->redirigir('/public/mis-tickets');
+        return;
+    }
+
+    // Obtener respuestas del ticket
+    $respuestaModel = new \Models\RespuestaTicket();
+    $respuestas = $respuestaModel->obtenerPorTicket($id);
+
+    // Verificar firma digital (si existe)
+    $firma_valida = false;
+    if (!empty($ticket['firma_digital'])) {
+        $firmaDigital = new \Core\FirmaDigital();
+        $firma_valida = $firmaDigital->verificarFirmaTicket($ticket, $ticket['firma_digital']);
+    }
+
+    $this->vista('public/ver_ticket', [
+        'titulo' => 'Ticket #' . $id,
+        'ticket' => $ticket,
+        'respuestas' => $respuestas,
+        'firma_valida' => $firma_valida
+    ]);
+}
 
     public function cambiarPassword()
     {

@@ -1,12 +1,12 @@
 <?php
-// ============================================================
+
 // BREVE DESCRIPCIÓN:
 // Modelo base del sistema (Model).
 // Todos los modelos heredan de esta clase.
 // Proporciona métodos genéricos para interactuar con la BD
 // (findAll, findById, create, update, delete). Cada modelo
 // debe definir su propiedad $table con el nombre de la tabla.
-// ============================================================
+
 
 
 namespace Core;

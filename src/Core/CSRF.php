@@ -1,10 +1,10 @@
 <?php
-// ============================================================
+
 // BREVE DESCRIPCIÓN:
 // Generación y validación de tokens CSRF (RNF-01 - OWASP).
 // Protege contra ataques de falsificación de peticiones.
 // Se usa en todos los formularios del sistema.
-// ============================================================
+
 
 namespace Core;
 

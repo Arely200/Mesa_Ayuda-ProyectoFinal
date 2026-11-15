@@ -4,60 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $titulo ?? 'Detalle Ticket' ?> - Mesa de Ayuda</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; }
-        .header { background: #0D47A1; color: #fff; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-menu { background: #fff; padding: 0 32px; display: flex; gap: 8px; border-bottom: 1px solid #E0E0E0; }
-        .nav-menu a { padding: 16px 20px; color: #616161; text-decoration: none; font-size: 14px; font-weight: 500; border-bottom: 3px solid transparent; }
-        .nav-menu a:hover, .nav-menu a.active { color: #0D47A1; border-bottom-color: #1E88E5; }
-        .content { padding: 32px; max-width: 900px; margin: 0 auto; }
-        .card { background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 24px; }
-        .card h2 { margin-bottom: 16px; color: #0D47A1; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .campo { margin-bottom: 12px; }
-        .campo label { font-weight: 600; color: #616161; font-size: 13px; display: block; }
-        .campo .valor { font-size: 15px; color: #212121; padding: 6px 0; }
-        .badge { padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; display: inline-block; }
-        .badge-en.proceso, .badge-en { background: #E3F2FD; color: #0D47A1; }
-        .badge-espera { background: #FFF8E1; color: #F57F17; }
-        .badge-culminada { background: #E8F5E9; color: #2E7D32; }
-        .badge-alta { background: #FFEBEE; color: #C62828; }
-        .badge-media { background: #FFF3E0; color: #E65100; }
-        .badge-baja { background: #E8F5E9; color: #2E7D32; }
-        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
-        .btn-primary { background: #1E88E5; color: #fff; }
-        .btn-primary:hover { background: #1565C0; }
-        .btn-success { background: #43A047; color: #fff; }
-        .btn-success:hover { background: #2E7D32; }
-        .btn-secondary { background: #E0E0E0; color: #616161; }
-        .btn-secondary:hover { background: #BDBDBD; }
-        .btn-danger { background: #E53935; color: #fff; }
-        .btn-danger:hover { background: #C62828; }
-        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .flex { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-        .alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; }
-        .alert-success { background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9; }
-        .alert-error { background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2; }
-        .firma { padding: 8px 16px; border-radius: 6px; display: inline-block; font-size: 13px; }
-        .firma-valida { background: #E8F5E9; color: #2E7D32; }
-        .firma-invalida { background: #FFEBEE; color: #C62828; }
-        .respuesta { border-left: 3px solid #1E88E5; padding: 12px 16px; margin-bottom: 12px; background: #f8f9fa; border-radius: 0 6px 6px 0; }
-        .respuesta .agente { font-weight: 600; color: #0D47A1; }
-        .respuesta .fecha { font-size: 12px; color: #999; }
-        .respuesta .mensaje { margin-top: 6px; color: #212121; }
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 4px; color: #212121; }
-        .form-group textarea { width: 100%; padding: 10px 14px; border: 2px solid #E0E0E0; border-radius: 6px; font-size: 14px; font-family: inherit; resize: vertical; min-height: 80px; }
-        .form-group textarea:focus { outline: none; border-color: #1E88E5; }
-    </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/Mesa_Ayuda/public/css/estilos.css">
 </head>
 <body>
 
 <header class="header">
-    <div class="logo"><i class="bi bi-bullseye"></i> Mesa de Ayuda</div>
+    <div class="logo">Mesa de Ayuda</div>
     <div>
         <span><?= $_SESSION['user_nombre'] ?? 'Usuario' ?></span>
         <form method="POST" action="/Mesa_Ayuda/logout" style="display:inline;">
@@ -68,13 +20,13 @@
 </header>
 
 <nav class="nav-menu">
-    <a href="/Mesa_Ayuda/admin/dashboard"><i class="bi bi-house-door"></i> Inicio</a>
-    <a href="/Mesa_Ayuda/admin/usuarios"><i class="bi bi-people"></i> Usuarios</a>
-    <a href="/Mesa_Ayuda/admin/colaboradores"><i class="bi bi-person"></i> Colaboradores</a>
-    <a href="/Mesa_Ayuda/admin/tickets" class="active"><i class="bi bi-ticket-perforated"></i> Tickets</a>
-    <a href="/Mesa_Ayuda/admin/categorias"><i class="bi bi-folder2-open"></i> Categorías</a>
-    <a href="/Mesa_Ayuda/admin/reportes"><i class="bi bi-bar-chart"></i> Reportes</a>
-    <a href="/Mesa_Ayuda/admin/logs"><i class="bi bi-clipboard-check"></i> Logs</a>
+    <a href="/Mesa_Ayuda/admin/dashboard">Inicio</a>
+    <a href="/Mesa_Ayuda/admin/usuarios">Usuarios</a>
+    <a href="/Mesa_Ayuda/admin/colaboradores">Colaboradores</a>
+    <a href="/Mesa_Ayuda/admin/tickets" class="active">Tickets</a>
+    <a href="/Mesa_Ayuda/admin/categorias">Categorías</a>
+    <a href="/Mesa_Ayuda/admin/reportes">Reportes</a>
+    <a href="/Mesa_Ayuda/admin/logs">Logs</a>
 </nav>
 
 <div class="content">
@@ -92,15 +44,15 @@
     <div class="header-actions">
         <h1><?= htmlspecialchars($titulo) ?></h1>
         <div class="flex">
-            <a href="/Mesa_Ayuda/admin/tickets" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+            <a href="/Mesa_Ayuda/admin/tickets" class="btn btn-secondary">← Volver</a>
             <?php if ($ticket['estado'] !== 'Culminada'): ?>
                 <form method="POST" action="/Mesa_Ayuda/admin/tickets/en-espera/<?= $ticket['id'] ?>" style="display:inline;">
                     <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
-                    <button type="submit" class="btn btn-secondary" onclick="return confirm('¿Poner en espera?')"><i class="bi bi-pause-circle"></i> En Espera</button>
+                    <button type="submit" class="btn btn-secondary" onclick="return confirm('¿Poner en espera?')">En Espera</button>
                 </form>
                 <form method="POST" action="/Mesa_Ayuda/admin/tickets/culminar/<?= $ticket['id'] ?>" style="display:inline;">
                     <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
-                    <button type="submit" class="btn btn-success" <?= empty($respuestas) ? 'disabled style="background:#BDBDBD;cursor:not-allowed;"' : '' ?> onclick="return confirm('¿Culminar este ticket?')"><i class="bi bi-check-circle"></i> Culminar</button>
+                    <button type="submit" class="btn btn-success" <?= empty($respuestas) ? 'disabled style="background:#BDBDBD;cursor:not-allowed;"' : '' ?> onclick="return confirm('¿Culminar este ticket?')">Culminar</button>
                 </form>
             <?php endif; ?>
         </div>
@@ -108,9 +60,9 @@
 
     <!-- FIRMA DIGITAL -->
     <div class="card">
-        <h2><i class="bi bi-shield-lock"></i> Integridad del Ticket</h2>
+        <h2>Integridad del Ticket</h2>
         <span class="firma <?= $firma_valida ? 'firma-valida' : 'firma-invalida' ?>">
-            <?= $firma_valida ? '<i class="bi bi-check-circle"></i> Firma válida - Datos íntegros' : '<i class="bi bi-x-circle"></i> Firma inválida - Datos modificados' ?>
+            <?= $firma_valida ? '✓ Firma válida - Datos íntegros' : '✗ Firma inválida - Datos modificados' ?>
         </span>
         <?php if (!empty($ticket['firma_digital'])): ?>
             <span style="font-size:12px;color:#999;margin-left:12px;">
@@ -121,7 +73,7 @@
 
     <!-- INFORMACIÓN DEL TICKET -->
     <div class="card">
-        <h2><i class="bi bi-clipboard-check"></i> Información del Ticket</h2>
+        <h2>Información del Ticket</h2>
         <div class="grid-2">
             <div>
                 <div class="campo">
@@ -168,7 +120,7 @@
 
     <!-- COLABORADOR Y AGENTE -->
     <div class="card">
-        <h2><i class="bi bi-person"></i> Usuarios</h2>
+        <h2>Usuarios</h2>
         <div class="grid-2">
             <div>
                 <div class="campo">
@@ -185,7 +137,7 @@
                             <strong><?= htmlspecialchars($ticket['agente_nombre'] ?? 'N/A') ?></strong>
                             <div style="font-size:13px;color:#757575;"><?= htmlspecialchars($ticket['agente_email'] ?? '') ?></div>
                         <?php else: ?>
-                            <span style="color:#E65100;"><i class="bi bi-exclamation-triangle"></i> Sin asignar</span>
+                            <span style="color:#E65100;">Sin asignar</span>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -215,7 +167,7 @@
 
     <!-- FECHAS -->
     <div class="card">
-        <h2><i class="bi bi-calendar-event"></i> Fechas</h2>
+        <h2>Fechas</h2>
         <div class="grid-2">
             <div>
                 <div class="campo">
@@ -260,16 +212,45 @@
     <!-- SOLUCIÓN -->
     <?php if (!empty($ticket['solucion'])): ?>
         <div class="card">
-            <h2><i class="bi bi-check2-circle"></i> Solución</h2>
+            <h2>Solución</h2>
             <div style="border-left:3px solid #43A047;padding:12px 16px;background:#f1f8f2;border-radius:0 6px 6px 0;">
                 <?= nl2br(htmlspecialchars($ticket['solucion'])) ?>
             </div>
         </div>
     <?php endif; ?>
 
+    <!-- EVALUACIÓN DEL COLABORADOR (solo lectura) -->
+    <div class="card">
+        <h2>Evaluación del Colaborador</h2>
+        <?php if (!empty($encuesta)): ?>
+            <?php
+                $colores = [
+                    'Satisfecho'    => ['bg' => '#E8F5E9', 'txt' => '#2E7D32'],
+                    'Conforme'      => ['bg' => '#E3F2FD', 'txt' => '#0D47A1'],
+                    'Inconforme'    => ['bg' => '#FFEBEE', 'txt' => '#C62828'],
+                    'No respondida' => ['bg' => '#F5F5F5', 'txt' => '#757575'],
+                ];
+                $c = $colores[$encuesta['calificacion']] ?? $colores['No respondida'];
+            ?>
+            <span class="badge" style="background:<?= $c['bg'] ?>;color:<?= $c['txt'] ?>;">
+                <?= htmlspecialchars($encuesta['calificacion']) ?>
+            </span>
+            <?php if (!empty($encuesta['comentario'])): ?>
+                <div class="valor" style="margin-top:10px;">
+                    <?= nl2br(htmlspecialchars($encuesta['comentario'])) ?>
+                </div>
+            <?php endif; ?>
+            <div style="font-size:12px;color:#999;margin-top:8px;">
+                Respondida el <?= date('d/m/Y H:i', strtotime($encuesta['fecha'])) ?>
+            </div>
+        <?php else: ?>
+            <p style="color:#999;">El colaborador aún no ha respondido la encuesta de satisfacción.</p>
+        <?php endif; ?>
+    </div>
+
     <!-- HISTORIAL DE RESPUESTAS -->
     <div class="card">
-        <h2><i class="bi bi-chat-dots"></i> Historial de Respuestas</h2>
+        <h2>Historial de Respuestas</h2>
         <?php if (empty($respuestas)): ?>
             <p style="color:#999;">No hay respuestas aún.</p>
         <?php else: ?>
@@ -288,7 +269,7 @@
     <!-- AGREGAR RESPUESTA -->
     <?php if ($ticket['estado'] !== 'Culminada'): ?>
         <div class="card">
-            <h2><i class="bi bi-pencil"></i> Agregar Respuesta</h2>
+            <h2>Agregar Respuesta</h2>
             <form method="POST" action="/Mesa_Ayuda/admin/tickets/responder">
                 <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
                 <input type="hidden" name="ticket_id" value="<?= $ticket['id'] ?>">
@@ -302,5 +283,347 @@
     <?php endif; ?>
 
 </div>
+
+<style>
+    /* ========== RESET Y BASE ========== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f5f5f5;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+        background: #0D47A1;
+        color: #fff;
+        padding: 16px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-logout {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 12px;
+    }
+
+    .btn-logout:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ========== NAVEGACIÓN ========== */
+    .nav-menu {
+        background: #fff;
+        padding: 0 32px;
+        display: flex;
+        gap: 8px;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .nav-menu a {
+        padding: 16px 20px;
+        color: #616161;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        border-bottom: 3px solid transparent;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        color: #0D47A1;
+        border-bottom-color: #1E88E5;
+    }
+
+    /* ========== CONTENIDO ========== */
+    .content {
+        padding: 32px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* ========== TARJETAS ========== */
+    .card {
+        background: #fff;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        margin-bottom: 24px;
+    }
+
+    .card h2 {
+        margin-bottom: 16px;
+        color: #0D47A1;
+    }
+
+    /* ========== GRID ========== */
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .campo {
+        margin-bottom: 12px;
+    }
+
+    .campo label {
+        font-weight: 600;
+        color: #616161;
+        font-size: 13px;
+        display: block;
+    }
+
+    .campo .valor {
+        font-size: 15px;
+        color: #212121;
+        padding: 6px 0;
+    }
+
+    /* ========== BADGES ========== */
+    .badge {
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 500;
+        display: inline-block;
+    }
+
+    .badge-en.proceso,
+    .badge-en {
+        background: #E3F2FD;
+        color: #0D47A1;
+    }
+
+    .badge-espera {
+        background: #FFF8E1;
+        color: #F57F17;
+    }
+
+    .badge-culminada {
+        background: #E8F5E9;
+        color: #2E7D32;
+    }
+
+    .badge-alta {
+        background: #FFEBEE;
+        color: #C62828;
+    }
+
+    .badge-media {
+        background: #FFF3E0;
+        color: #E65100;
+    }
+
+    .badge-baja {
+        background: #E8F5E9;
+        color: #2E7D32;
+    }
+
+    /* ========== BOTONES ========== */
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background: #1E88E5;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background: #1565C0;
+    }
+
+    .btn-success {
+        background: #43A047;
+        color: #fff;
+    }
+
+    .btn-success:hover {
+        background: #2E7D32;
+    }
+
+    .btn-secondary {
+        background: #E0E0E0;
+        color: #616161;
+    }
+
+    .btn-secondary:hover {
+        background: #BDBDBD;
+    }
+
+    .btn-danger {
+        background: #E53935;
+        color: #fff;
+    }
+
+    .btn-danger:hover {
+        background: #C62828;
+    }
+
+    .header-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .flex {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    /* ========== ALERTAS ========== */
+    .alert {
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .alert-success {
+        background: #E8F5E9;
+        color: #2E7D32;
+        border: 1px solid #C8E6C9;
+    }
+
+    .alert-error {
+        background: #FFEBEE;
+        color: #C62828;
+        border: 1px solid #FFCDD2;
+    }
+
+    /* ========== FIRMA ========== */
+    .firma {
+        padding: 8px 16px;
+        border-radius: 6px;
+        display: inline-block;
+        font-size: 13px;
+    }
+
+    .firma-valida {
+        background: #E8F5E9;
+        color: #2E7D32;
+    }
+
+    .firma-invalida {
+        background: #FFEBEE;
+        color: #C62828;
+    }
+
+    /* ========== RESPUESTAS ========== */
+    .respuesta {
+        border-left: 3px solid #1E88E5;
+        padding: 12px 16px;
+        margin-bottom: 12px;
+        background: #f8f9fa;
+        border-radius: 0 6px 6px 0;
+    }
+
+    .respuesta .agente {
+        font-weight: 600;
+        color: #0D47A1;
+    }
+
+    .respuesta .fecha {
+        font-size: 12px;
+        color: #999;
+    }
+
+    .respuesta .mensaje {
+        margin-top: 6px;
+        color: #212121;
+    }
+
+    /* ========== FORMULARIO ========== */
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 4px;
+        color: #212121;
+    }
+
+    .form-group textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border: 2px solid #E0E0E0;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #1E88E5;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+
+        .nav-menu {
+            overflow-x: auto;
+            padding: 0 16px;
+        }
+
+        .nav-menu a {
+            padding: 12px 14px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .header-actions {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .flex {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .flex .btn {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
+
 </body>
 </html>

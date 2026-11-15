@@ -4,51 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($titulo ?? 'Panel Supervisor') ?> - Mesa de Ayuda</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; color: #212121; }
-        .header { background: #263238; color: #fff; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-menu { background: #fff; padding: 0 32px; display: flex; gap: 8px; border-bottom: 1px solid #E0E0E0; overflow-x: auto; }
-        .nav-menu a { padding: 16px 20px; color: #616161; text-decoration: none; font-size: 14px; font-weight: 500; border-bottom: 3px solid transparent; white-space: nowrap; }
-        .nav-menu a:hover, .nav-menu a.active { color: #263238; border-bottom-color: #1E88E5; }
-        .content { padding: 32px; max-width: 1300px; margin: 0 auto; }
-        .welcome { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 24px; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
-        .welcome h1 { font-size: 26px; margin-bottom: 6px; }
-        .stats { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px; }
-        .stat-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-        .stat-card .numero { font-size: 32px; font-weight: 700; color: #0D47A1; }
-        .stat-card .label { font-size: 13px; color: #757575; margin-top: 4px; }
-        .grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
-        .panel { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-        .panel h2 { margin-bottom: 16px; color: #0D47A1; font-size: 20px; }
-        table { width: 100%; border-collapse: collapse; font-size: 14px; }
-        th { background: #f5f5f5; text-align: left; padding: 10px 12px; color: #616161; font-weight: 600; }
-        td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; }
-        .badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; display: inline-block; }
-        .badge-proceso { background: #E3F2FD; color: #0D47A1; }
-        .badge-espera { background: #FFF8E1; color: #F57F17; }
-        .badge-culminada { background: #E8F5E9; color: #2E7D32; }
-        .btn { padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
-        .btn-primary { background: #1E88E5; color: #fff; }
-        .btn-dark { background: #455A64; color: #fff; }
-        .btn-light { background: rgba(255,255,255,0.18); color: #fff; }
-        .actions { display: grid; gap: 10px; }
-        .agent-row { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid #eee; padding: 10px 0; }
-        .agent-row strong { color: #212121; }
-        .agent-row span { color: #0D47A1; font-weight: 700; }
-        .alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; }
-        .alert-success { background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9; }
-        .alert-error { background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2; }
-        @media (max-width: 900px) {
-            .stats, .grid-2 { grid-template-columns: 1fr; }
-            .welcome { align-items: flex-start; flex-direction: column; }
-            .content { padding: 16px; }
-        }
-    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/Mesa_Ayuda/public/css/estilos.css">
 </head>
 <body>
+
 <header class="header">
     <div style="font-size:20px;font-weight:700;"><i class="bi bi-speedometer2"></i> Panel Supervisor</div>
     <div>
@@ -147,5 +107,262 @@
         </div>
     </div>
 </div>
+
+<style>
+    /* ========== RESET Y BASE ========== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f5f5f5;
+        color: #212121;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+        background: #263238;
+        color: #fff;
+        padding: 16px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* ========== NAVEGACIÓN ========== */
+    .nav-menu {
+        background: #fff;
+        padding: 0 32px;
+        display: flex;
+        gap: 8px;
+        border-bottom: 1px solid #E0E0E0;
+        overflow-x: auto;
+    }
+
+    .nav-menu a {
+        padding: 16px 20px;
+        color: #616161;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        border-bottom: 3px solid transparent;
+        white-space: nowrap;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        color: #263238;
+        border-bottom-color: #1E88E5;
+    }
+
+    /* ========== CONTENIDO ========== */
+    .content {
+        padding: 32px;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    /* ========== BIENVENIDA ========== */
+    .welcome {
+        background: #fff;
+        padding: 24px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        margin-bottom: 24px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .welcome h1 {
+        font-size: 26px;
+        margin-bottom: 6px;
+    }
+
+    /* ========== ESTADÍSTICAS ========== */
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(150px, 1fr));
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .stat-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .stat-card .numero {
+        font-size: 32px;
+        font-weight: 700;
+        color: #0D47A1;
+    }
+
+    .stat-card .label {
+        font-size: 13px;
+        color: #757575;
+        margin-top: 4px;
+    }
+
+    /* ========== GRID ========== */
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+    }
+
+    /* ========== PANELES ========== */
+    .panel {
+        background: #fff;
+        padding: 24px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .panel h2 {
+        margin-bottom: 16px;
+        color: #0D47A1;
+        font-size: 20px;
+    }
+
+    /* ========== TABLA ========== */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    th {
+        background: #f5f5f5;
+        text-align: left;
+        padding: 10px 12px;
+        color: #616161;
+        font-weight: 600;
+    }
+
+    td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* ========== BADGES ========== */
+    .badge {
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+        display: inline-block;
+    }
+
+    .badge-proceso {
+        background: #E3F2FD;
+        color: #0D47A1;
+    }
+
+    .badge-espera {
+        background: #FFF8E1;
+        color: #F57F17;
+    }
+
+    .badge-culminada {
+        background: #E8F5E9;
+        color: #2E7D32;
+    }
+
+    /* ========== BOTONES ========== */
+    .btn {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background: #1E88E5;
+        color: #fff;
+    }
+
+    .btn-dark {
+        background: #455A64;
+        color: #fff;
+    }
+
+    .btn-light {
+        background: rgba(255, 255, 255, 0.18);
+        color: #fff;
+    }
+
+    .actions {
+        display: grid;
+        gap: 10px;
+    }
+
+    /* ========== AGENTES ========== */
+    .agent-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+    }
+
+    .agent-row strong {
+        color: #212121;
+    }
+
+    .agent-row span {
+        color: #0D47A1;
+        font-weight: 700;
+    }
+
+    /* ========== ALERTAS ========== */
+    .alert {
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .alert-success {
+        background: #E8F5E9;
+        color: #2E7D32;
+        border: 1px solid #C8E6C9;
+    }
+
+    .alert-error {
+        background: #FFEBEE;
+        color: #C62828;
+        border: 1px solid #FFCDD2;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+        .stats {
+            grid-template-columns: 1fr;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+
+        .welcome {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .content {
+            padding: 16px;
+        }
+    }
+</style>
+
 </body>
 </html>

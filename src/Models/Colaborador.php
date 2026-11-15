@@ -1,5 +1,7 @@
 <?php
-
+// BREVE DESCRIPCIÓN:
+// Modelo para la gestión de colaboradores del sistema.
+// Los colaboradores son las personas que generan solicitudes de soporte (tickets).
 namespace Models;
 
 use Core\Modelo;
@@ -15,7 +17,7 @@ class Colaborador extends Modelo
         $stmt->execute();
         return $stmt->fetchAll();
     }
-
+    // Obtener colaborador por identificación
     public function obtenerPorIdentificacion($identificacion)
     {
         $sql = "SELECT * FROM {$this->tabla} WHERE identificacion = ?";
@@ -46,9 +48,9 @@ class Colaborador extends Modelo
     {
         return $this->eliminar($id);
     }
-    // ============================================================
+
 // PAGINACIÓN
-// ============================================================
+
 public function obtenerPaginados($pagina = 1, $porPagina = 5)
 {
     $offset = ($pagina - 1) * $porPagina;

@@ -2,54 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tickets - Mesa de Ayuda</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; }
-        .header { background: #0D47A1; color: #fff; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-menu { background: #fff; padding: 0 32px; display: flex; gap: 8px; border-bottom: 1px solid #E0E0E0; }
-        .nav-menu a { padding: 16px 20px; color: #616161; text-decoration: none; font-size: 14px; font-weight: 500; border-bottom: 3px solid transparent; }
-        .nav-menu a:hover, .nav-menu a.active { color: #0D47A1; border-bottom-color: #1E88E5; }
-        .content { padding: 32px; max-width: 1400px; margin: 0 auto; }
-        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
-        .btn-primary { background: #1E88E5; color: #fff; }
-        .btn-primary:hover { background: #1565C0; }
-        .btn-success { background: #43A047; color: #fff; }
-        .btn-success:hover { background: #2E7D32; }
-        .btn-danger { background: #E53935; color: #fff; }
-        .btn-danger:hover { background: #C62828; }
-        .btn-warning { background: #FB8C00; color: #fff; }
-        .btn-warning:hover { background: #E65100; }
-        .btn-sm { padding: 6px 12px; font-size: 12px; }
-        table { width: 100%; background: #fff; border-collapse: collapse; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-        th { background: #f5f5f5; text-align: left; padding: 12px 16px; color: #616161; font-weight: 600; }
-        td { padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
-        .badge { padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500; }
-        .badge-proceso { background: #E3F2FD; color: #0D47A1; }
-        .badge-espera { background: #FFF8E1; color: #F57F17; }
-        .badge-culminada { background: #E8F5E9; color: #2E7D32; }
-        .badge-alta { background: #FFEBEE; color: #C62828; }
-        .badge-media { background: #FFF3E0; color: #E65100; }
-        .badge-baja { background: #E8F5E9; color: #2E7D32; }
-        .pagination { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; flex-wrap: wrap; gap: 12px; }
-        .pagination-info { color: #757575; font-size: 14px; }
-        .pagination-links { display: flex; gap: 8px; flex-wrap: wrap; }
-        .pagination-links a, .pagination-links span { padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; }
-        .pagination-links a { background: #f5f5f5; color: #616161; border: 1px solid #E0E0E0; }
-        .pagination-links a:hover { background: #E0E0E0; }
-        .pagination-links .active { background: #1E88E5; color: #fff; border: 1px solid #1E88E5; }
-        .pagination-links .prev-next { background: #E0E0E0; color: #616161; border: none; }
-        .pagination-links .prev-next:hover { background: #BDBDBD; }
-        .pagination-select { display: flex; align-items: center; gap: 8px; }
-        .pagination-select select { padding: 6px 12px; border: 2px solid #E0E0E0; border-radius: 6px; font-size: 14px; }
-    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/Mesa_Ayuda/public/css/estilos.css">
 </head>
 <body>
+
 <header class="header">
-    <div class="logo"></i> Mesa de Ayuda</div>
+    <div class="logo">Mesa de Ayuda</div>
     <div>
         <span><?= $_SESSION['user_nombre'] ?? 'Usuario' ?></span>
         <form method="POST" action="/Mesa_Ayuda/logout" style="display:inline;">
@@ -131,24 +92,24 @@
         </div>
         <div class="pagination-links">
             <?php if ($pagina > 1): ?>
-                <a href="/Mesa_Ayuda/admin/tickets?pagina=<?= $pagina - 1 ?>" class="prev-next">◀ Anterior</a>
+                <a href="?pagina=<?= $pagina - 1 ?>" class="prev-next">← Anterior</a>
             <?php endif; ?>
             
             <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
                 <?php if ($i == $pagina): ?>
                     <span class="active"><?= $i ?></span>
                 <?php else: ?>
-                    <a href="/Mesa_Ayuda/admin/tickets?pagina=<?= $i ?>"><?= $i ?></a>
+                    <a href="?pagina=<?= $i ?>"><?= $i ?></a>
                 <?php endif; ?>
             <?php endfor; ?>
             
             <?php if ($pagina < $totalPaginas): ?>
-                <a href="/Mesa_Ayuda/admin/tickets?pagina=<?= $pagina + 1 ?>" class="prev-next">Siguiente ▶</a>
+                <a href="?pagina=<?= $pagina + 1 ?>" class="prev-next">Siguiente →</a>
             <?php endif; ?>
         </div>
         <div class="pagination-select">
             <label style="font-size:14px;color:#757575;">Mostrar:</label>
-            <select onchange="window.location.href='/Mesa_Ayuda/admin/tickets?porPagina='+this.value">
+            <select onchange="window.location.href='?porPagina='+this.value">
                 <option value="5" <?= $porPagina == 5 ? 'selected' : '' ?>>5</option>
                 <option value="10" <?= $porPagina == 10 ? 'selected' : '' ?>>10</option>
                 <option value="25" <?= $porPagina == 25 ? 'selected' : '' ?>>25</option>
@@ -156,7 +117,299 @@
             </select>
         </div>
     </div>
-
 </div>
+
+<style>
+    /* ========== RESET Y BASE ========== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f5f5f5;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+        background: #0D47A1;
+        color: #fff;
+        padding: 16px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* ========== NAVEGACIÓN ========== */
+    .nav-menu {
+        background: #fff;
+        padding: 0 32px;
+        display: flex;
+        gap: 8px;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .nav-menu a {
+        padding: 16px 20px;
+        color: #616161;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        border-bottom: 3px solid transparent;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        color: #0D47A1;
+        border-bottom-color: #1E88E5;
+    }
+
+    /* ========== CONTENIDO ========== */
+    .content {
+        padding: 32px;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    /* ========== HEADER ACCIONES ========== */
+    .header-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    /* ========== BOTONES ========== */
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background: #1E88E5;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background: #1565C0;
+    }
+
+    .btn-success {
+        background: #43A047;
+        color: #fff;
+    }
+
+    .btn-success:hover {
+        background: #2E7D32;
+    }
+
+    .btn-danger {
+        background: #E53935;
+        color: #fff;
+    }
+
+    .btn-danger:hover {
+        background: #C62828;
+    }
+
+    .btn-warning {
+        background: #FB8C00;
+        color: #fff;
+    }
+
+    .btn-warning:hover {
+        background: #E65100;
+    }
+
+    .btn-sm {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    /* ========== TABLA ========== */
+    table {
+        width: 100%;
+        background: #fff;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    th {
+        background: #f5f5f5;
+        text-align: left;
+        padding: 12px 16px;
+        color: #616161;
+        font-weight: 600;
+    }
+
+    td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* ========== BADGES ========== */
+    .badge {
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .badge-proceso {
+        background: #E3F2FD;
+        color: #0D47A1;
+    }
+
+    .badge-espera {
+        background: #FFF8E1;
+        color: #F57F17;
+    }
+
+    .badge-culminada {
+        background: #E8F5E9;
+        color: #2E7D32;
+    }
+
+    .badge-alta {
+        background: #FFEBEE;
+        color: #C62828;
+    }
+
+    .badge-media {
+        background: #FFF3E0;
+        color: #E65100;
+    }
+
+    .badge-baja {
+        background: #E8F5E9;
+        color: #2E7D32;
+    }
+
+    /* ========== PAGINACIÓN ========== */
+    .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .pagination-info {
+        color: #757575;
+        font-size: 14px;
+    }
+
+    .pagination-links {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .pagination-links a,
+    .pagination-links span {
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .pagination-links a {
+        background: #f5f5f5;
+        color: #616161;
+        border: 1px solid #E0E0E0;
+    }
+
+    .pagination-links a:hover {
+        background: #E0E0E0;
+    }
+
+    .pagination-links .active {
+        background: #1E88E5;
+        color: #fff;
+        border: 1px solid #1E88E5;
+    }
+
+    .pagination-links .prev-next {
+        background: #E0E0E0;
+        color: #616161;
+        border: none;
+    }
+
+    .pagination-links .prev-next:hover {
+        background: #BDBDBD;
+    }
+
+    .pagination-select {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .pagination-select select {
+        padding: 6px 12px;
+        border: 2px solid #E0E0E0;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .header-actions {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .nav-menu {
+            overflow-x: auto;
+            padding: 0 16px;
+        }
+
+        .nav-menu a {
+            padding: 12px 14px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .pagination {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .pagination-select {
+            margin-top: 8px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .pagination-links a,
+        .pagination-links span {
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+    }
+</style>
+
 </body>
 </html>

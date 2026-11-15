@@ -4,46 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $titulo ?? 'Estadísticas por Categoría' ?> - Mesa de Ayuda</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; }
-        .header { background: #0D47A1; color: #fff; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-menu { background: #fff; padding: 0 32px; display: flex; gap: 8px; border-bottom: 1px solid #E0E0E0; }
-        .nav-menu a { padding: 16px 20px; color: #616161; text-decoration: none; font-size: 14px; font-weight: 500; border-bottom: 3px solid transparent; }
-        .nav-menu a:hover, .nav-menu a.active { color: #0D47A1; border-bottom-color: #1E88E5; }
-        .content { padding: 32px; max-width: 1200px; margin: 0 auto; }
-        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
-        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
-        .btn-primary { background: #1E88E5; color: #fff; }
-        .btn-primary:hover { background: #1565C0; }
-        .btn-success { background: #43A047; color: #fff; }
-        .btn-success:hover { background: #2E7D32; }
-        .filtros { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 24px; }
-        .filtros form { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
-        .filtros .grupo { display: flex; flex-direction: column; }
-        .filtros .grupo label { font-size: 13px; font-weight: 600; color: #616161; margin-bottom: 4px; }
-        .filtros .grupo input, .filtros .grupo select { padding: 8px 12px; border: 2px solid #E0E0E0; border-radius: 6px; font-size: 14px; }
-        .resumen { background: #fff; padding: 20px 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-        .resumen .numero { font-size: 32px; font-weight: 700; color: #0D47A1; }
-        .resumen .label { font-size: 14px; color: #757575; }
-        table { width: 100%; background: #fff; border-collapse: collapse; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-        th { background: #f5f5f5; text-align: left; padding: 12px 16px; color: #616161; font-weight: 600; }
-        td { padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
-        .badge-tipo { padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500; }
-        .badge-soporte { background: #E3F2FD; color: #0D47A1; }
-        .badge-academico { background: #F3E5F5; color: #6A1B9A; }
-        .barra-wrap { background: #f0f0f0; border-radius: 6px; height: 10px; width: 140px; overflow: hidden; }
-        .barra { background: #1E88E5; height: 100%; }
-        .pagination { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; flex-wrap: wrap; gap: 12px; }
-        .pagination-info { color: #757575; font-size: 14px; }
-        .pagination-links { display: flex; gap: 8px; flex-wrap: wrap; }
-        .pagination-links a, .pagination-links span { padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; }
-        .pagination-links a { background: #f5f5f5; color: #616161; border: 1px solid #E0E0E0; }
-        .pagination-links a:hover { background: #E0E0E0; }
-        .pagination-links .active { background: #1E88E5; color: #fff; border: 1px solid #1E88E5; }
-        .pagination-links .prev-next { background: #E0E0E0; color: #616161; border: none; }
-        .pagination-links .prev-next:hover { background: #BDBDBD; }
-    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/Mesa_Ayuda/public/css/estilos.css">
     <script>
@@ -56,6 +16,7 @@
 </head>
 <body>
 
+
 <header class="header">
     <div class="logo">Mesa de Ayuda</div>
     <div>
@@ -66,6 +27,7 @@
         </form>
     </div>
 </header>
+
 
 <nav class="nav-menu">
     <a href="/Mesa_Ayuda/admin/dashboard"><i class="bi bi-house-door"></i> Inicio</a>
@@ -79,14 +41,13 @@
 
 <div class="content">
 
+    <!-- HEADER -->
     <div class="header-actions">
-        <h1><i class="bi bi-pie-chart"></i> Estadísticas por Categoría</h1>
-        <a href="/Mesa_Ayuda/admin/reportes" class="btn" style="background:#E0E0E0;color:#616161;"><i class="bi bi-arrow-left"></i> Volver a Reportes</a>
+        <h1>Estadísticas por Categoría</h1>
+        <a href="/Mesa_Ayuda/admin/reportes" class="btn" style="background:#E0E0E0;color:#616161;">← Volver a Reportes</a>
     </div>
 
-    <!-- ======================================== -->
     <!-- FILTRO DE PERIODO -->
-    <!-- ======================================== -->
     <div class="filtros">
         <form method="GET" action="/Mesa_Ayuda/admin/reportes/categorias">
             <div class="grupo">
@@ -120,14 +81,15 @@
                 </select>
             </div>
             <div class="grupo">
-                <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Consultar</button>
+                <button type="submit" class="btn btn-primary">Consultar</button>
             </div>
             <div class="grupo">
-                <a href="/Mesa_Ayuda/admin/reportes/categorias/excel?periodo=<?= urlencode($periodo) ?>&anio=<?= $anio ?>&mes=<?= $mes ?>&semestre=<?= $semestre ?>" class="btn btn-success"><i class="bi bi-download"></i> Exportar Excel</a>
+                <a href="/Mesa_Ayuda/admin/reportes/categorias/excel?periodo=<?= urlencode($periodo) ?>&anio=<?= $anio ?>&mes=<?= $mes ?>&semestre=<?= $semestre ?>" class="btn btn-success">Exportar Excel</a>
             </div>
         </form>
     </div>
 
+    <!-- RESUMEN -->
     <div class="resumen">
         <div>
             <div class="numero"><?= $totalAtendidosPeriodo ?></div>
@@ -135,9 +97,7 @@
         </div>
     </div>
 
-    <!-- ======================================== -->
     <!-- TABLA POR CATEGORÍA -->
-    <!-- ======================================== -->
     <table>
         <thead>
             <tr>
@@ -168,9 +128,7 @@
         </tbody>
     </table>
 
-    <!-- ======================================== -->
     <!-- PAGINACIÓN -->
-    <!-- ======================================== -->
     <div class="pagination">
         <div class="pagination-info">
             Mostrando <?= count($categorias) ?> de <?= $total ?> categorías
@@ -178,7 +136,7 @@
         <div class="pagination-links">
             <?php $qs = "periodo=$periodo&anio=$anio&mes=$mes&semestre=$semestre"; ?>
             <?php if ($pagina > 1): ?>
-                <a href="?<?= $qs ?>&pagina=<?= $pagina - 1 ?>" class="prev-next">◀ Anterior</a>
+                <a href="?<?= $qs ?>&pagina=<?= $pagina - 1 ?>" class="prev-next">← Anterior</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
@@ -190,11 +148,336 @@
             <?php endfor; ?>
 
             <?php if ($pagina < $totalPaginas): ?>
-                <a href="?<?= $qs ?>&pagina=<?= $pagina + 1 ?>" class="prev-next">Siguiente ▶</a>
+                <a href="?<?= $qs ?>&pagina=<?= $pagina + 1 ?>" class="prev-next">Siguiente →</a>
             <?php endif; ?>
         </div>
     </div>
 
 </div>
+
+
+<style>
+    /* ========== RESET Y BASE ========== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f5f5f5;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+        background: #0D47A1;
+        color: #fff;
+        padding: 16px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* ========== NAVEGACIÓN ========== */
+    .nav-menu {
+        background: #fff;
+        padding: 0 32px;
+        display: flex;
+        gap: 8px;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .nav-menu a {
+        padding: 16px 20px;
+        color: #616161;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        border-bottom: 3px solid transparent;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        color: #0D47A1;
+        border-bottom-color: #1E88E5;
+    }
+
+    /* ========== CONTENIDO ========== */
+    .content {
+        padding: 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* ========== HEADER ACCIONES ========== */
+    .header-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    /* ========== BOTONES ========== */
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background: #1E88E5;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background: #1565C0;
+    }
+
+    .btn-success {
+        background: #43A047;
+        color: #fff;
+    }
+
+    .btn-success:hover {
+        background: #2E7D32;
+    }
+
+    /* ========== FILTROS ========== */
+    .filtros {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        margin-bottom: 24px;
+    }
+
+    .filtros form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: flex-end;
+    }
+
+    .filtros .grupo {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filtros .grupo label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #616161;
+        margin-bottom: 4px;
+    }
+
+    .filtros .grupo input,
+    .filtros .grupo select {
+        padding: 8px 12px;
+        border: 2px solid #E0E0E0;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+
+    /* ========== RESUMEN ========== */
+    .resumen {
+        background: #fff;
+        padding: 20px 24px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        margin-bottom: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .resumen .numero {
+        font-size: 32px;
+        font-weight: 700;
+        color: #0D47A1;
+    }
+
+    .resumen .label {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    /* ========== TABLA ========== */
+    table {
+        width: 100%;
+        background: #fff;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    th {
+        background: #f5f5f5;
+        text-align: left;
+        padding: 12px 16px;
+        color: #616161;
+        font-weight: 600;
+    }
+
+    td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* ========== BADGES ========== */
+    .badge-tipo {
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .badge-soporte {
+        background: #E3F2FD;
+        color: #0D47A1;
+    }
+
+    .badge-academico {
+        background: #F3E5F5;
+        color: #6A1B9A;
+    }
+
+    /* ========== BARRA ========== */
+    .barra-wrap {
+        background: #f0f0f0;
+        border-radius: 6px;
+        height: 10px;
+        width: 140px;
+        overflow: hidden;
+    }
+
+    .barra {
+        background: #1E88E5;
+        height: 100%;
+    }
+
+    /* ========== PAGINACIÓN ========== */
+    .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .pagination-info {
+        color: #757575;
+        font-size: 14px;
+    }
+
+    .pagination-links {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .pagination-links a,
+    .pagination-links span {
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .pagination-links a {
+        background: #f5f5f5;
+        color: #616161;
+        border: 1px solid #E0E0E0;
+    }
+
+    .pagination-links a:hover {
+        background: #E0E0E0;
+    }
+
+    .pagination-links .active {
+        background: #1E88E5;
+        color: #fff;
+        border: 1px solid #1E88E5;
+    }
+
+    .pagination-links .prev-next {
+        background: #E0E0E0;
+        color: #616161;
+        border: none;
+    }
+
+    .pagination-links .prev-next:hover {
+        background: #BDBDBD;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+        .filtros form {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .filtros .grupo input,
+        .filtros .grupo select {
+            width: 100%;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .header-actions {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .header {
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .nav-menu {
+            overflow-x: auto;
+            padding: 0 16px;
+        }
+
+        .nav-menu a {
+            padding: 12px 14px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .resumen {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .pagination {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .pagination-links a,
+        .pagination-links span {
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+    }
+</style>
+
 </body>
 </html>

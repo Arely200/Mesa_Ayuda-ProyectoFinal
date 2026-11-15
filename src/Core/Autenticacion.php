@@ -1,10 +1,10 @@
 <?php
-// ============================================================
+
 // BREVE DESCRIPCIÓN:
 // Clase de autenticación. Maneja login, logout, verificación
 // de sesión, control de intentos fallidos (RNF-04) y
 // verificación de roles y permisos.
-// ============================================================
+
 
 namespace Core;
 

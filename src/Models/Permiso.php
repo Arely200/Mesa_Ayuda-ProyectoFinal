@@ -1,4 +1,7 @@
 <?php
+// BREVE DESCRIPCIÓN:
+// Modelo para la gestión de permisos del sistema.
+// Define qué acciones puede realizar cada rol sobre los módulos.
 
 namespace Models;
 

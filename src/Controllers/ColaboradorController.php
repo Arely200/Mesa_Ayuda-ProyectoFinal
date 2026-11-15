@@ -208,6 +208,17 @@ class ColaboradorController extends Controlador
             Validador::validarEmail($email);
             Validador::validarIdentificacion($identificacion);
 
+            // Correo o identificación ya usados por OTRO colaborador
+            $existeEmail = $this->colaboradorModel->obtenerPorEmail($email);
+            if ($existeEmail && (int)$existeEmail['id'] !== (int)$id) {
+                throw new ValidacionException('El correo ya está registrado', 'email');
+            }
+
+            $existeIdent = $this->colaboradorModel->obtenerPorIdentificacion($identificacion);
+            if ($existeIdent && (int)$existeIdent['id'] !== (int)$id) {
+                throw new ValidacionException('La identificación ya está registrada', 'identificacion');
+            }
+
             if (!empty($password)) {
                 Validador::validarPassword($password);
                 $hash = (new HashPassword())->generar($password);

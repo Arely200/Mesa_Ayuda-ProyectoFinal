@@ -1,11 +1,11 @@
 <?php
-// ============================================================
+
 // BREVE DESCRIPCIÓN:
 // Archivo de configuración general del sistema.
 // Carga las variables del archivo .env y las convierte en
 // constantes (BASE_URL, BASE_PATH, VIEWS_PATH) para usarlas
 // en toda la aplicación.
-// ============================================================
+
 
 // Cargar variables de entorno
 $envFile = __DIR__ . '/../../.env';

@@ -2,10 +2,8 @@
 
 namespace Interfaces;
 
-/**
- * ============================================================
+/*
  * CONTRATO DE SERVICIOS CRIPTOGRÁFICOS
- * ============================================================
  * Define un único comportamiento para cualquier operación de
  * transformación de datos que necesite la aplicación: hashing
  * de contraseñas, firma digital de registros (tickets), o
@@ -18,7 +16,6 @@ namespace Interfaces;
  * de PASSWORD_DEFAULT a Argon2id, o de HMAC-SHA256 a otro
  * esquema de firma, implementando una nueva clase que cumpla
  * este mismo contrato — sin tocar los controladores que la usan.
- * ============================================================
  */
 interface CriptografiaInterface
 {

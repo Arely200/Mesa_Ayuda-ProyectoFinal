@@ -129,6 +129,9 @@ class TicketController extends Controlador
         $agentes       = $this->usuarioModel->obtenerTodos();
         $colaboradores = $this->colaboradorModel->obtenerTodos();
 
+        $encuestaModel = new \Models\EncuestaSatisfaccion();
+        $encuesta = $encuestaModel->obtenerPorTicket($id);
+
         $this->vista('admin/tickets/ver', [
             'ticket'       => $ticket,
             'respuestas'   => $respuestas,
@@ -136,21 +139,22 @@ class TicketController extends Controlador
             'colaboradores'=> $colaboradores,
             'firma_valida' => $firmaValida,
             'titulo'       => 'Detalle del Ticket #' . $id,
-            'csrf_token'   => CSRF::generarToken()
+            'csrf_token'   => CSRF::generarToken(),
+            'encuesta'     => $encuesta
         ]);
     }
 
-    public function asignar()
+       public function asignar()
     {
         RolMiddleware::checkPermission('tickets', 'asignar');
+        $ticketId = (int)($_POST['ticket_id'] ?? 0);
         try {
             CSRF::validarToken($_POST['csrf_token'] ?? '');
 
-            $ticketId = (int)($_POST['ticket_id'] ?? 0);
             $agenteId = (int)($_POST['agente_id'] ?? 0);
 
             if ($agenteId <= 0) {
-                throw new \Exception('Debe seleccionar un agente');
+                throw new \Exception('No has asignado un agente. Selecciona uno antes de confirmar.');
             }
 
             $this->ticketModel->actualizarTicket($ticketId, ['agente_asignado_id' => $agenteId]);
@@ -164,7 +168,7 @@ class TicketController extends Controlador
 
         } catch (\Exception $e) {
             $_SESSION['error'] = $e->getMessage();
-            $this->redirigir('/admin/tickets');
+            $this->redirigir('/admin/tickets/ver/' . $ticketId);
         }
     }
 

@@ -1,5 +1,7 @@
 <?php
-
+// BREVE DESCRIPCIÓN:
+// Modelo para la gestión de usuarios internos del sistema.
+// Administradores, supervisores y agentes que gestionan los tickets.
 namespace Models;
 
 use Core\Modelo;
@@ -16,6 +18,7 @@ class Usuario extends Modelo
         return $stmt->fetchAll();
     }
 
+    // Obtener usuario por email
     public function obtenerPorEmail($email)
     {
         $sql = "SELECT * FROM {$this->tabla} WHERE email = ?";
@@ -47,7 +50,8 @@ class Usuario extends Modelo
         // Baja lógica — no elimina físicamente
         return $this->actualizar($id, ['activo' => 0]);
     }
-
+    
+    // Obtener usuarios paginados
     public function obtenerPaginados($pagina = 1, $porPagina = 5)
     {
         $offset = ($pagina - 1) * $porPagina;
